@@ -17,8 +17,9 @@ The importer is a one-time build-time operation. It fetches source books from th
 
 Default translations:
 - WEB — World English Bible
-- KJV — King James Version
 - ASV — American Standard Version (1901)
+
+KJV is not imported yet: the selected upstream revision marks its public-domain provenance as unverified, so the importer rejects it rather than silently accepting a legal uncertainty.
 
 Use `--translations WEB` to import only WEB. Keep the generated bundle and provenance manifest together when packaging the app.
 
