@@ -11,7 +11,7 @@ py -3 scripts/import_public_domain_bibles.py
 py -3 scripts/validate_library.py
 ```
 
-The importer downloads the verified public-domain WEB, KJV, and ASV source books from a pinned Midvash Bible Data revision, checks all 66 books and 1,189 chapters for each translation, and writes `data/bible-data.js` plus `sources/manifest.json` with source metadata and SHA-256 hashes.
+The importer downloads the verified public-domain WEB and ASV source books from a pinned Midvash Bible Data revision, checks all 66 books and 1,189 chapters for each translation, and writes `data/bible-data.js` plus `sources/manifest.json` with source metadata and SHA-256 hashes.
 
 After import, open `index.html` directly. No runtime download, API, server, or internet connection is used. Keep the generated data file and manifest together when copying or packaging Stillword.
 
@@ -19,7 +19,7 @@ After import, open `index.html` directly. No runtime download, API, server, or i
 
 ## Licensing
 
-The imported English texts are identified by the upstream dataset as public domain, with source metadata recorded in `sources/manifest.json`. Copyright status can vary by jurisdiction; review source notes before redistribution. The WEB name is a trademark and the text must not be altered while represented as the World English Bible.
+The imported WEB and ASV English texts are identified by the upstream dataset as verified public domain. KJV is intentionally excluded from the importer because the pinned source metadata does not yet verify its provenance., with source metadata recorded in `sources/manifest.json`. Copyright status can vary by jurisdiction; review source notes before redistribution. The WEB name is a trademark and the text must not be altered while represented as the World English Bible.
 
 Ang Biblia 2001 is not included; obtain written redistribution permission from the Philippine Bible Society before bundling it. Ang Biblia 1905 must be sourced from a specific, verified edition with a documented redistribution basis before inclusion.
 
