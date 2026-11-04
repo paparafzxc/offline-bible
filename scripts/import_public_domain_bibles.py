@@ -32,7 +32,6 @@ UPSTREAM = (
 )
 TRANSLATIONS = {
     "WEB": {"slug": "web", "name": "World English Bible"},
-    "KJV": {"slug": "kjv", "name": "King James Version"},
     "ASV": {"slug": "asv", "name": "American Standard Version"},
 }
 
@@ -101,7 +100,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--translations", nargs="+", choices=TRANSLATIONS,
-        default=["WEB", "KJV", "ASV"],
+        default=["WEB", "ASV"],
         help="translation codes to import (default: WEB KJV ASV)",
     )
     args = parser.parse_args()
