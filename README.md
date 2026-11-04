@@ -1,64 +1,36 @@
 # Stillword — Offline Bible
 
-A portable, static Bible-reading web app. Open `index.html` directly in a modern browser; no backend, package manager, account, CDN, or network connection is required.
+Stillword is a folder-portable Bible reader. Open `index.html` directly in a modern browser; the app is designed to work without a local server.
 
-## Included in this initial repository commit
+## Complete offline text library (v0.2)
 
-- Responsive desktop/mobile interface and light/dark themes
-- 66-book Protestant Bible navigation metadata
-- WEB, KJV and ASV translation selectors
-- Sample text only: Genesis 1:1–5, Psalm 23:1–3, and John 3:16
-- Bookmarks, colored highlights, personal notes
-- Search across installed sample verses
-- Basic reading-plan outlines
-- Browser-local storage and JSON backup/restore
-- Local translation JSON import for the current session
+The initial `data/bible-data.js` is starter/demo content. To build a complete, locally bundled public-domain corpus, run once from the repository root on a computer with internet access:
 
-## Important: this is not yet a complete Bible text library
-
-The repository currently contains only a small set of sample verses. The 66-book catalogue is navigation metadata, not complete chapter content. Do not represent this version as a complete offline Bible.
-
-## Translation and redistribution status
-
-| Translation | Status |
-|---|---|
-| World English Bible (WEB) | Public domain; preserve the text unaltered and observe WEB trademark requirements |
-| King James Version (KJV) | Public domain outside the United Kingdom; verify applicable jurisdiction |
-| American Standard Version (ASV, 1901) | Public domain |
-| Ang Biblia 1905 | Reported public domain; verify exact source and edition before bundling |
-| Ang Biblia 2001 | Copyright Philippine Bible Society; obtain permission before distributing full text |
-
-The application code license does not grant rights to Bible translations. Keep text-source attribution and licensing notices with every imported dataset.
-
-## Run
-
-1. Download or clone this repository.
-2. Open `index.html` in Chrome, Edge, Firefox, or another modern browser.
-3. Use Settings to export personal data before moving to another browser profile or computer.
-
-Local storage is scoped to the browser profile and may vary for `file://` origins. Backup/restore is provided for portability.
-
-## Dataset format
-
-```json
-{
-  "code": "WEB",
-  "name": "World English Bible",
-  "rights": "License and attribution notice",
-  "chapters": {
-    "Gen.1": {
-      "1": "Verse one text",
-      "2": "Verse two text"
-    },
-    "John.3": {
-      "16": "Verse text"
-    }
-  }
-}
+```powershell
+py -3 -m pip install datasets huggingface_hub
+py -3 scripts/import_public_domain_bibles.py
+py -3 scripts/import_tagalog_bibles.py
+py -3 scripts/validate_library.py
 ```
 
-For permanent bundling, add the translation under `window.BIBLE_DATA.translations` in `data/bible-data.js`. The current import control loads a dataset into the current browser session only.
+The English importer downloads verified public-domain WEB and ASV books from a pinned Midvash revision. The Tagalog importer adds Ang Dating Biblia (1905) and Tagalog Unlocked Literal Bible (2018). Both pipelines validate 66 books and 1,189 chapters, and preserve source/license provenance. Run both importers before validation.
 
-## Next milestone
+After import, open `index.html` directly. No runtime download, API, server, or internet connection is used. Keep the generated data file and manifest together when copying or packaging Stillword.
 
-Acquire and validate complete, legally redistributable text datasets; add persistent translation management, indexed full-text search, chapter completeness checks, and automated browser/offline tests.
+**Important:** the importer is committed, but generated full-text data is not yet present in a fresh clone until the import command is run. Do not describe the starter repository as containing complete Bible texts before the validator passes.
+
+## Licensing
+
+The imported WEB and ASV English texts are identified by the upstream dataset as verified public domain. KJV is intentionally excluded from the importer because the pinned source metadata does not yet verify its provenance., with source metadata recorded in `sources/manifest.json`. Copyright status can vary by jurisdiction; review source notes before redistribution. The WEB name is a trademark and the text must not be altered while represented as the World English Bible.
+
+Ang Biblia 2001 is not included; obtain written redistribution permission from the Philippine Bible Society before bundling it. Ang Biblia 1905 must be sourced from a specific, verified edition with a documented redistribution basis before inclusion.
+
+## Personal data
+
+Bookmarks, highlights, notes, theme, and reading preferences are stored in browser local storage. Export a backup before clearing browser data or moving to another browser profile.
+
+## Filipino / Tagalog editions
+
+The v0.2 branch now tracks two redistributable Tagalog candidates: Ang Dating Biblia (1905), identified as public domain subject to exact-source verification, and Tagalog Unlocked Literal Bible (2018), licensed CC BY-SA 4.0. See `docs/TAGALOG-TRANSLATIONS.md` and `sources/tagalog-translations.json` for sources, rights, and import gates.
+
+The Tagalog importer is a build-time step; these texts are not present in a fresh clone until the importers have been run and validation passes. The Tagalog editions must be imported, normalized, and validated before they appear in the reader. Ang Biblia 2001, Magandang Balita Biblia, and Ang Salita ng Diyos remain permission-pending; do not bundle their full text without written authorization.
