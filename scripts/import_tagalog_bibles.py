@@ -120,12 +120,12 @@ def import_adb1905(books):
 
 
 def clean_usfm(text):
-    text = re.sub(r"\f .*?\f\*", " ", text, flags=re.S)
-    text = re.sub(r"\x .*?\x\*", " ", text, flags=re.S)
+    text = re.sub(r"\\f .*?\\f\\*", " ", text, flags=re.S)
+    text = re.sub(r"\\x .*?\\x\\*", " ", text, flags=re.S)
     # Preserve the displayed word and discard lexical attributes.
-    text = re.sub(r"\w\s+([^|\\]+)\|[^\\]*?\w\*", r"\1", text)
-    text = re.sub(r"\zaln-[^\\]*", " ", text)
-    text = re.sub(r"\[+]?[-a-zA-Z0-9]+\*?", " ", text)
+    text = re.sub(r"\\w\s+([^|\\]+)\|[^\\]*?\\w\\*", r"\1", text)
+    text = re.sub(r"\\zaln-[^\\]*", " ", text)
+    text = re.sub(r"\\[+]?[-a-zA-Z0-9]+\*?", " ", text)
     text = re.sub(r"\s+", " ", text)
     return html.unescape(text).strip()
 
@@ -145,7 +145,7 @@ def import_tglulb(books):
         seen_books = set()
         for filename in usfm_files:
             raw = archive.read(filename).decode("utf-8-sig")
-            id_match = re.search(r"(?m)^\id\s+([A-Z0-9]{3})", raw)
+            id_match = re.search(r"(?m)^\\id\s+([A-Z0-9]{3})", raw)
             if not id_match:
                 continue
             usfm_id = id_match.group(1)
@@ -156,14 +156,14 @@ def import_tglulb(books):
                 raise RuntimeError(f"TGLULB: duplicate book file for {osis}")
             seen_books.add(osis)
 
-            chapter_matches = list(re.finditer(r"(?m)\c\s+(\d+)\s*", raw))
+            chapter_matches = list(re.finditer(r"(?m)\\c\s+(\d+)\s*", raw))
             if not chapter_matches:
                 raise RuntimeError(f"TGLULB: no chapters in {filename}")
             for ci, cm in enumerate(chapter_matches):
                 chapter_number = int(cm.group(1))
                 end = chapter_matches[ci + 1].start() if ci + 1 < len(chapter_matches) else len(raw)
                 chunk = raw[cm.end():end]
-                verse_matches = list(re.finditer(r"(?m)\v\s+([0-9]+[a-z]?)\s*", chunk))
+                verse_matches = list(re.finditer(r"(?m)\\v\s+([0-9]+[a-z]?)\s*", chunk))
                 if not verse_matches:
                     raise RuntimeError(f"TGLULB: no verses in {osis}.{chapter_number}")
                 verse_map = {}
