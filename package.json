@@ -1,0 +1,49 @@
+{
+  "name": "g-word-offline-bible",
+  "version": "0.3.0",
+  "description": "G-word — Offline Bible",
+  "private": true,
+  "author": "JLLVCI-Payatas",
+  "license": "UNLICENSED",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "check:desktop": "node scripts/check-desktop.cjs",
+    "dist:portable": "npm run check:desktop && electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "org.jllvci.payatas.gword",
+    "productName": "G-word",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "data/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.cjs"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "G-word-Portable.${ext}"
+    },
+    "portable": {
+      "artifactName": "G-word-Portable.${ext}"
+    }
+  }
+}

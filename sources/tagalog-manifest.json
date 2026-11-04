@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-04T09:56:30.698464+00:00",
+  "translations": [
+    {
+      "code": "ADB1905",
+      "name": "Ang Dating Biblia (1905)",
+      "language": "tl",
+      "sourceUrl": "https://huggingface.co/datasets/k-mktr/tagalog_bible_tl",
+      "sourceRevision": "b142c2c1f6d5ad2d665797d59e8f38eaf915465d",
+      "license": "Public domain (1905 edition; source dataset declares copyright expired)",
+      "sourceVerified": true,
+      "verses": 31102
+    },
+    {
+      "code": "TGLULB",
+      "name": "Tagalog Unlocked Literal Bible (2018)",
+      "language": "tl",
+      "sourceUrl": "https://ebible.org/Scriptures/tglulb_usfm.zip",
+      "archiveSha256": "05094b8218a03b5046158f6f5454838a837315400ae6dd340aec0de76c6e18b9",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Tagalog Unlocked Literal Bible © 2018 Door43 World Missions Community, licensed under CC BY-SA 4.0.",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sourceVerified": true,
+      "verses": 31103
+    }
+  ]
+}
