@@ -1,72 +1,35 @@
-# Bible data format (v0.2)
+# Bible data
 
 ## Runtime constraint
 
-Stillword is opened directly from a folder. Do not load local JSON with `fetch()` at runtime: browsers may block it under `file://`. The build pipeline emits JavaScript files that register local data on `window.BIBLE_LIBRARY`. The reader loads those files through local script elements.
+Stillword opens directly from a folder. Do not use runtime `fetch()` for local JSON: browsers may block it under `file://`. The current reader consumes a locally bundled JavaScript data file, `data/bible-data.js`.
 
-## Canonical source format
+## Build the complete English corpus
 
-Each translation source is a UTF-8 JSON file with this shape:
+From the repository root, run:
 
-```json
-{
-  "schemaVersion": 2,
-  "translation": {
-    "code": "WEB",
-    "name": "World English Bible",
-    "language": "en",
-    "edition": "2020 stable text",
-    "source": "https://ebible.org/engwebp/",
-    "license": "Public domain",
-    "rights": "Preserve the text unaltered; WEB is a trademark.",
-    "retrieved": "YYYY-MM-DD"
-  },
-  "books": [
-    {
-      "osis": "Gen",
-      "name": "Genesis",
-      "chapters": [
-        {
-          "number": 1,
-          "verses": [
-            { "number": "1", "text": "In the beginning..." }
-          ]
-        }
-      ]
-    }
-  ]
-}
+```powershell
+py -3 scripts/import_public_domain_bibles.py
+py -3 scripts/validate_library.py
 ```
 
-Verse numbers are strings to preserve suffixes and nonstandard verse labels. Preserve source text exactly; do not silently normalize punctuation, spelling, or capitalization.
+The importer is a one-time build-time operation. It fetches source books from the pinned `midvash/bible-data` commit, checks source metadata, validates book/chapter/verse structure, and writes the generated reader bundle plus `sources/manifest.json`. The running app never downloads anything.
 
-## Generated shard contract
+Default translations:
+- WEB — World English Bible
+- KJV — King James Version
+- ASV — American Standard Version (1901)
 
-Each generated file registers exactly one book:
+Use `--translations WEB` to import only WEB. Keep the generated bundle and provenance manifest together when packaging the app.
 
-```js
-window.BIBLE_LIBRARY = window.BIBLE_LIBRARY || {};
-window.BIBLE_LIBRARY.WEB = window.BIBLE_LIBRARY.WEB || {};
-window.BIBLE_LIBRARY.WEB.Gen = {
-  "osis": "Gen",
-  "chapters": {
-    "1": {
-      "1": "In the beginning..."
-    }
-  }
-};
-```
+## Provenance and integrity
 
-The app must treat translation text as immutable source content. User annotations belong in localStorage and must be keyed by translation + OSIS book + chapter + verse so they remain distinct between translations.
+For each translation, the manifest records the upstream commit, source URL, source verification flag, declared corpus statistics, and SHA-256 hash for each of the 66 source book files. The importer refuses versions that the upstream metadata does not mark as verified public domain.
 
-## Provenance
+The validator checks all 66 canonical books and 1,189 expected chapters, no missing or extra chapter keys, non-empty verse text, verified public-domain metadata, 66 source hashes per translation, and verse totals matching upstream metadata.
 
-Every source translation must have an entry in `sources/manifest.json` with:
-- exact edition and language;
-- original source URL and upstream project/revision;
-- license or written permission evidence;
-- retrieval date;
-- SHA-256 of the untouched source file;
-- any conversion notes.
+Structural validation is not a substitute for textual proofreading or jurisdiction-specific legal review.
 
-Never mark a translation distributable based only on the fact that it can be downloaded.
+## Philippine Bible Society translations
+
+Ang Biblia 2001 is not bundled because redistribution permission is required. Ang Biblia 1905 must be sourced from a specific, verifiable edition with a documented redistribution basis before inclusion. Never infer permission from an online copy being accessible.
