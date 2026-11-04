@@ -26,3 +26,9 @@ Ang Biblia 2001 is not included; obtain written redistribution permission from t
 ## Personal data
 
 Bookmarks, highlights, notes, theme, and reading preferences are stored in browser local storage. Export a backup before clearing browser data or moving to another browser profile.
+
+## Filipino / Tagalog editions
+
+The v0.2 branch now tracks two redistributable Tagalog candidates: Ang Dating Biblia (1905), identified as public domain subject to exact-source verification, and Tagalog Unlocked Literal Bible (2018), licensed CC BY-SA 4.0. See `docs/TAGALOG-TRANSLATIONS.md` and `sources/tagalog-translations.json` for sources, rights, and import gates.
+
+These are not yet installed text corpora. The Tagalog editions must be imported, normalized, and validated before they appear in the reader. Ang Biblia 2001, Magandang Balita Biblia, and Ang Salita ng Diyos remain permission-pending; do not bundle their full text without written authorization.
