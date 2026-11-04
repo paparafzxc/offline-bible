@@ -169,6 +169,8 @@ def import_tglulb(books):
                 verse_map = {}
                 for vi, vm in enumerate(verse_matches):
                     verse_number = vm.group(1)
+                    if "-" in verse_number:
+                        raise RuntimeError(f"TGLULB: verse range requires manual normalization at {osis}.{chapter_number}:{verse_number}")
                     vend = verse_matches[vi + 1].start() if vi + 1 < len(verse_matches) else len(chunk)
                     verse_text = clean_usfm(chunk[vm.end():vend])
                     if not verse_text:
@@ -176,7 +178,10 @@ def import_tglulb(books):
                     if verse_number in verse_map:
                         raise RuntimeError(f"TGLULB: duplicate verse {osis}.{chapter_number}:{verse_number}")
                     verse_map[verse_number] = verse_text
-                chapters[f"{osis}.{chapter_number}"] = verse_map
+                chapter_key = f"{osis}.{chapter_number}"
+                if chapter_key in chapters:
+                    raise RuntimeError(f"TGLULB: duplicate chapter {chapter_key}")
+                chapters[chapter_key] = verse_map
 
     if len(seen_books) != 66:
         raise RuntimeError(f"TGLULB: expected 66 book files, found {len(seen_books)}")
