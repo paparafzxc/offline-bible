@@ -9,7 +9,9 @@ Stillword opens directly from a folder. Do not use runtime `fetch()` for local J
 From the repository root, run:
 
 ```powershell
+py -3 -m pip install datasets huggingface_hub
 py -3 scripts/import_public_domain_bibles.py
+py -3 scripts/import_tagalog_bibles.py
 py -3 scripts/validate_library.py
 ```
 
@@ -21,7 +23,7 @@ Default translations:
 
 KJV is not imported yet: the selected upstream revision marks its public-domain provenance as unverified, so the importer rejects it rather than silently accepting a legal uncertainty.
 
-Use `--translations WEB` to import only WEB. Keep the generated bundle and provenance manifest together when packaging the app.
+Use `--translations WEB` to import only WEB. The Tagalog importer adds ADB1905 and TGLULB. Run both importers before validation; keep all generated manifests with the bundle.
 
 ## Provenance and integrity
 
