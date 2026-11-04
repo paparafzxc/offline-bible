@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "language": "tl",
+  "translations": [
+    {
+      "code": "ADB1905",
+      "name": "Ang Dating Biblia",
+      "edition": "1905",
+      "language": "tl",
+      "sourceUrl": "https://github.com/fangniude/bible-data/raw/refs/heads/master/bibledata-tl-adb1905.zip",
+      "sourceProject": "fangniude/bible-data (translations branch)",
+      "license": "Public domain (source-listed; verify archive edition)",
+      "rightsStatus": "candidate-verified",
+      "attribution": "Ang Dating Biblia (1905); retain source archive and citation.",
+      "sha256": "",
+      "complete": false,
+      "importFormat": "ZIP archive; inspect contained module/data format before conversion",
+      "validation": "66-book Protestant canon; chapter/verse coverage; sample cross-check"
+    },
+    {
+      "code": "TGLULB",
+      "name": "Tagalog Unlocked Literal Bible",
+      "edition": "2018",
+      "language": "tl",
+      "sourceUrl": "https://ebible.org/Scriptures/tglulb_usfm.zip",
+      "sourceProject": "Door43 World Missions Community / eBible.org",
+      "license": "CC BY-SA 4.0",
+      "rightsStatus": "redistributable-with-attribution-and-sharealike",
+      "attribution": "Tagalog Unlocked Literal Bible © 2018 Door43 World Missions Community, licensed under CC BY-SA 4.0.",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "",
+      "complete": false,
+      "importFormat": "USFM ZIP",
+      "validation": "66-book Protestant canon; chapter/verse coverage; sample cross-check"
+    }
+  ]
+}
