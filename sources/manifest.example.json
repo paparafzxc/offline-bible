@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "translations": [
+    {
+      "code": "WEB",
+      "name": "World English Bible",
+      "edition": "2020 stable text",
+      "language": "en",
+      "sourceUrl": "https://ebible.org/engwebp/",
+      "upstreamProject": "eBible.org",
+      "upstreamRevision": "",
+      "license": "Public domain",
+      "rightsNotes": "Do not change the actual text while retaining the World English Bible name; WEB is a trademark.",
+      "retrieved": "",
+      "sourceSha256": "",
+      "redistributionApproved": true,
+      "conversionNotes": ""
+    },
+    {
+      "code": "KJV",
+      "name": "King James Version",
+      "edition": "Specify exact source edition",
+      "language": "en",
+      "sourceUrl": "",
+      "upstreamProject": "",
+      "upstreamRevision": "",
+      "license": "Public domain subject to jurisdiction",
+      "rightsNotes": "Confirm the applicable jurisdiction and exact source edition before redistribution.",
+      "retrieved": "",
+      "sourceSha256": "",
+      "redistributionApproved": false,
+      "conversionNotes": ""
+    },
+    {
+      "code": "ASV",
+      "name": "American Standard Version",
+      "edition": "1901",
+      "language": "en",
+      "sourceUrl": "",
+      "upstreamProject": "",
+      "upstreamRevision": "",
+      "license": "Public domain",
+      "rightsNotes": "Retain source attribution and verify the selected digital edition.",
+      "retrieved": "",
+      "sourceSha256": "",
+      "redistributionApproved": false,
+      "conversionNotes": ""
+    },
+    {
+      "code": "AB1905",
+      "name": "Ang Biblia",
+      "edition": "1905",
+      "language": "tl",
+      "sourceUrl": "",
+      "upstreamProject": "",
+      "upstreamRevision": "",
+      "license": "Reported public domain; verify exact source edition",
+      "rightsNotes": "Do not distribute until the exact source and rights status have been checked.",
+      "retrieved": "",
+      "sourceSha256": "",
+      "redistributionApproved": false,
+      "conversionNotes": ""
+    },
+    {
+      "code": "AB2001",
+      "name": "Ang Biblia",
+      "edition": "2001",
+      "language": "tl",
+      "sourceUrl": "https://www.biblegateway.com/versions/Ang-Biblia-2001-ABTAG2001/",
+      "upstreamProject": "Philippine Bible Society",
+      "upstreamRevision": "",
+      "license": "Copyright Philippine Bible Society 2001",
+      "rightsNotes": "Written permission is required before bundling or redistributing the text.",
+      "retrieved": "",
+      "sourceSha256": "",
+      "redistributionApproved": false,
+      "conversionNotes": ""
+    }
+  ]
+}
