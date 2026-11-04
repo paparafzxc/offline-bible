@@ -1,4 +1,4 @@
-# Stillword — Offline Bible
+# G-Word — Offline Bible
 
 Stillword is a folder-portable Bible reader. Open `index.html` directly in a modern browser; the app is designed to work without a local server.
 
