@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import complete WEB/KJV/ASV corpora into Stillword's file://-safe data bundle.
+"""Import complete WEB/ASV corpora into Stillword's file://-safe data bundle.
 
 Run from the repository root:
     python scripts/import_public_domain_bibles.py
