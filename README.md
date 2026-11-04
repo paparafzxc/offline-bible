@@ -7,11 +7,13 @@ Stillword is a folder-portable Bible reader. Open `index.html` directly in a mod
 The initial `data/bible-data.js` is starter/demo content. To build a complete, locally bundled public-domain corpus, run once from the repository root on a computer with internet access:
 
 ```powershell
+py -3 -m pip install datasets huggingface_hub
 py -3 scripts/import_public_domain_bibles.py
+py -3 scripts/import_tagalog_bibles.py
 py -3 scripts/validate_library.py
 ```
 
-The importer downloads the verified public-domain WEB and ASV source books from a pinned Midvash Bible Data revision, checks all 66 books and 1,189 chapters for each translation, and writes `data/bible-data.js` plus `sources/manifest.json` with source metadata and SHA-256 hashes.
+The English importer downloads verified public-domain WEB and ASV books from a pinned Midvash revision. The Tagalog importer adds Ang Dating Biblia (1905) and Tagalog Unlocked Literal Bible (2018). Both pipelines validate 66 books and 1,189 chapters, and preserve source/license provenance. Run both importers before validation.
 
 After import, open `index.html` directly. No runtime download, API, server, or internet connection is used. Keep the generated data file and manifest together when copying or packaging Stillword.
 
@@ -31,4 +33,4 @@ Bookmarks, highlights, notes, theme, and reading preferences are stored in brows
 
 The v0.2 branch now tracks two redistributable Tagalog candidates: Ang Dating Biblia (1905), identified as public domain subject to exact-source verification, and Tagalog Unlocked Literal Bible (2018), licensed CC BY-SA 4.0. See `docs/TAGALOG-TRANSLATIONS.md` and `sources/tagalog-translations.json` for sources, rights, and import gates.
 
-These are not yet installed text corpora. The Tagalog editions must be imported, normalized, and validated before they appear in the reader. Ang Biblia 2001, Magandang Balita Biblia, and Ang Salita ng Diyos remain permission-pending; do not bundle their full text without written authorization.
+The Tagalog importer is a build-time step; these texts are not present in a fresh clone until the importers have been run and validation passes. The Tagalog editions must be imported, normalized, and validated before they appear in the reader. Ang Biblia 2001, Magandang Balita Biblia, and Ang Salita ng Diyos remain permission-pending; do not bundle their full text without written authorization.
